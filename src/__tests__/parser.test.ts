@@ -86,15 +86,10 @@ VALID_123=value
     expect(vars.length).toBe(3);
   });
 
-  it('should throw error when file cannot be read', () => {
+  it('should throw error with file path when file cannot be read', () => {
     const nonExistentPath = path.join(tempDir, 'non-existent-file.txt');
     
     expect(() => parseEnvTemplate(nonExistentPath)).toThrow(/Failed to read env template file/);
-  });
-
-  it('should include file path in error message when read fails', () => {
-    const nonExistentPath = path.join(tempDir, 'non-existent-file.txt');
-    
     expect(() => parseEnvTemplate(nonExistentPath)).toThrow(nonExistentPath);
   });
 });
