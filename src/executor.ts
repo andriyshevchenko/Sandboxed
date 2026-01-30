@@ -73,11 +73,15 @@ function executeCommand(command: string, envVars: Record<string, string>): Promi
       reject(error);
     });
 
-    child.on('exit', (code) => {
+    child.on('exit', (code, signal) => {
       if (code === 0) {
         resolve();
-      } else {
+      } else if (code !== null) {
         reject(new Error(`Command "${command}" exited with code ${code}`));
+      } else if (signal) {
+        reject(new Error(`Command "${command}" was terminated by signal ${signal}`));
+      } else {
+        reject(new Error(`Command "${command}" exited due to an unknown reason (no exit code or signal)`));
       }
     });
   });

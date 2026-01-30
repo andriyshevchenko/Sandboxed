@@ -16,6 +16,7 @@ describe('executeSandboxedCommand', () => {
   let originalCwd: string;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sandboxed-executor-test-'));
     originalCwd = process.cwd();
     process.chdir(tempDir);
