@@ -1,5 +1,5 @@
 {
-  "name": "sandboxed",
+  "name": "mcborov01/sandboxed",
   "version": "1.0.0",
   "description": "Execute commands with environment variables from keyring",
   "main": "dist/cli.js",
