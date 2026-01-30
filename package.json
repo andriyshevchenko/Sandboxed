@@ -1,0 +1,51 @@
+{
+  "name": "sandboxed",
+  "version": "1.0.0",
+  "description": "Execute commands with environment variables from keyring",
+  "main": "dist/cli.js",
+  "bin": {
+    "sandboxed": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cli",
+    "environment",
+    "keyring",
+    "dotenv"
+  ],
+  "author": "Andriy Shevchenko",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andriyshevchenko/Sandboxed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andriyshevchenko/Sandboxed/issues"
+  },
+  "homepage": "https://github.com/andriyshevchenko/Sandboxed#readme",
+  "dependencies": {
+    "@napi-rs/keyring": "^1.2.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.1.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
