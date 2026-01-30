@@ -22,6 +22,7 @@ export function parseEnvTemplate(filePath: string): string[] {
   }
   const lines = content.split('\n');
   const envVars: string[] = [];
+  const seen = new Set<string>();
 
   for (const line of lines) {
     const trimmed = line.trim();
@@ -34,7 +35,12 @@ export function parseEnvTemplate(filePath: string): string[] {
     // Match lines with KEY=VALUE format
     const match = trimmed.match(/^([A-Z_][A-Z0-9_]*)=/);
     if (match) {
-      envVars.push(match[1]);
+      const varName = match[1];
+      // Only add if not already seen (deduplicate)
+      if (!seen.has(varName)) {
+        envVars.push(varName);
+        seen.add(varName);
+      }
     }
   }
 

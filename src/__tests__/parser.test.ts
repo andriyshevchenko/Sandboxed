@@ -86,6 +86,22 @@ VALID_123=value
     expect(vars.length).toBe(3);
   });
 
+  it('should deduplicate environment variable names', () => {
+    const content = `APP_NAME=value1
+APP_NAME=value2
+DB_HOST=localhost
+DB_HOST=remote
+APP_ENV=dev
+`;
+
+    fs.writeFileSync(templatePath, content);
+    const vars = parseEnvTemplate(templatePath);
+
+    // Should only have 3 unique variables
+    expect(vars).toEqual(['APP_NAME', 'DB_HOST', 'APP_ENV']);
+    expect(vars.length).toBe(3);
+  });
+
   it('should throw error with file path when file cannot be read', () => {
     const nonExistentPath = path.join(tempDir, 'non-existent-file.txt');
     

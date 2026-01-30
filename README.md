@@ -41,7 +41,7 @@ sandboxed python app.py
 
 1. **Template File**: Create a `.env.template` file in your project root with the environment variable names you need:
 
-```bash
+```env
 # ===============================
 # Application
 # ===============================

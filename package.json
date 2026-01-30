@@ -6,6 +6,12 @@
   "bin": {
     "sandboxed": "dist/cli.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -19,6 +25,14 @@
   ],
   "author": "Andriy Shevchenko",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andriyshevchenko/Sandboxed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andriyshevchenko/Sandboxed/issues"
+  },
+  "homepage": "https://github.com/andriyshevchenko/Sandboxed#readme",
   "dependencies": {
     "@napi-rs/keyring": "^1.2.0",
     "commander": "^12.1.0"

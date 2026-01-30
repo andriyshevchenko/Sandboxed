@@ -2,13 +2,14 @@
 
 import { Command } from 'commander';
 import { executeSandboxedCommand } from './executor';
+import { version } from '../package.json';
 
 const program = new Command();
 
 program
   .name('sandboxed')
   .description('Execute commands with environment variables from keyring')
-  .version('1.0.0')
+  .version(version)
   .argument('<command...>', 'Command to execute')
   .action(async (commandArgs: string[]) => {
     const command = commandArgs.join(' ');
