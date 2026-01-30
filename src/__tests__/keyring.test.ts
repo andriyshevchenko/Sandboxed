@@ -20,6 +20,10 @@ jest.mock('@napi-rs/keyring', () => {
 });
 
 describe('getFromKeyring', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should return value when variable exists in keyring', () => {
     const result = getFromKeyring('EXISTING_VAR');
     expect(result).toBe('test-value');
@@ -37,6 +41,10 @@ describe('getFromKeyring', () => {
 });
 
 describe('getEnvValuesFromKeyring', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should return empty object when no variables provided', () => {
     const result = getEnvValuesFromKeyring([]);
     expect(result).toEqual({});
