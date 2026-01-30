@@ -109,6 +109,14 @@ On macOS, credentials are stored in the Keychain.
 ### Linux
 On Linux, credentials are stored in the Secret Service API (typically provided by GNOME Keyring or KWallet).
 
+## Security Considerations
+
+- **Command Execution**: This tool executes commands provided by the user. Only use it with commands from trusted sources.
+- **Keyring Access**: The tool retrieves credentials from your system keyring. Ensure your keyring is properly secured with a strong password.
+- **Environment Variables**: Environment variables are passed to child processes. Be aware that some programs may log or expose environment variables.
+- **Template Files**: Never commit actual secrets to `.env.template` files. Use them only for documentation and variable names.
+- **Credential Storage**: Each user/machine maintains their own keyring entries. Credentials are stored securely by the operating system's credential management system.
+
 ## Development
 
 ### Building from Source

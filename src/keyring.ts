@@ -5,7 +5,7 @@ import { Entry } from '@napi-rs/keyring';
  * @param varName - The name of the environment variable
  * @returns The value from keyring or null if not found
  */
-export async function getFromKeyring(varName: string): Promise<string | null> {
+export function getFromKeyring(varName: string): string | null {
   try {
     const service = 'sandboxed';
     const entry = new Entry(service, varName);
@@ -20,11 +20,11 @@ export async function getFromKeyring(varName: string): Promise<string | null> {
 /**
  * Retrieve values for multiple environment variables from keyring
  */
-export async function getEnvValuesFromKeyring(varNames: string[]): Promise<Record<string, string>> {
+export function getEnvValuesFromKeyring(varNames: string[]): Record<string, string> {
   const envValues: Record<string, string> = {};
 
   for (const varName of varNames) {
-    const value = await getFromKeyring(varName);
+    const value = getFromKeyring(varName);
     if (value !== null) {
       envValues[varName] = value;
     }

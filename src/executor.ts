@@ -22,7 +22,7 @@ export async function executeSandboxedCommand(command: string): Promise<void> {
   console.log(`Parsed ${envVarNames.length} environment variable(s): ${envVarNames.join(', ')}`);
 
   // Step 3: Get values from keyring
-  const envValues = await getEnvValuesFromKeyring(envVarNames);
+  const envValues = getEnvValuesFromKeyring(envVarNames);
   const foundCount = Object.keys(envValues).length;
   console.log(`Retrieved ${foundCount} value(s) from keyring`);
 
@@ -32,6 +32,11 @@ export async function executeSandboxedCommand(command: string): Promise<void> {
 
 /**
  * Execute a command with the given environment variables
+ * 
+ * SECURITY NOTE: This function executes commands provided by the user.
+ * It is the caller's responsibility to ensure the command is from a trusted source.
+ * The CLI tool is designed to execute user-provided commands, similar to how
+ * shell scripts or other CLI tools work.
  */
 function executeCommand(command: string, envVars: Record<string, string>): Promise<void> {
   return new Promise((resolve, reject) => {
