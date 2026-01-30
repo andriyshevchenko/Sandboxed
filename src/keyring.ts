@@ -12,7 +12,8 @@ export function getFromKeyring(varName: string): string | null {
     const value = entry.getPassword();
     return value;
   } catch (error) {
-    // Variable not found in keyring
+    // Variable not found in keyring or other error occurred
+    // This is expected behavior when a variable hasn't been stored yet
     return null;
   }
 }

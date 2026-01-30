@@ -3,6 +3,14 @@ import * as path from 'path';
 
 /**
  * Parse .env.template file and extract environment variable names
+ * 
+ * This function looks for lines in the format KEY=VALUE where KEY matches
+ * the pattern [A-Z_][A-Z0-9_]*, which is the standard convention for
+ * environment variable names (uppercase letters, digits, and underscores,
+ * starting with a letter or underscore).
+ * 
+ * @param filePath - Path to the .env.template file
+ * @returns Array of environment variable names
  */
 export function parseEnvTemplate(filePath: string): string[] {
   const content = fs.readFileSync(filePath, 'utf-8');

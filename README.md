@@ -60,6 +60,9 @@ DB_USER=postgres
 DB_PASSWORD=secret
 ```
 
+**Note**: Environment variable names must follow the standard convention: uppercase letters, digits, and underscores, starting with a letter or underscore (e.g., `APP_NAME`, `_INTERNAL_VAR`, `VAR_123`).
+```
+
 2. **Store Credentials**: Store the actual values in your system keyring. The tool uses the service name `sandboxed` and the environment variable name as the account/username.
 
    For example, on macOS/Linux, you can use the keychain/keyring tools, or programmatically:
@@ -111,11 +114,12 @@ On Linux, credentials are stored in the Secret Service API (typically provided b
 
 ## Security Considerations
 
-- **Command Execution**: This tool executes commands provided by the user. Only use it with commands from trusted sources.
+- **Command Execution**: This tool executes commands provided by the user directly through the system shell. It is designed for developer convenience and should only be used with commands from trusted sources. Shell metacharacters (pipes, redirects, etc.) are processed by the shell.
 - **Keyring Access**: The tool retrieves credentials from your system keyring. Ensure your keyring is properly secured with a strong password.
 - **Environment Variables**: Environment variables are passed to child processes. Be aware that some programs may log or expose environment variables.
 - **Template Files**: Never commit actual secrets to `.env.template` files. Use them only for documentation and variable names.
 - **Credential Storage**: Each user/machine maintains their own keyring entries. Credentials are stored securely by the operating system's credential management system.
+- **Variable Naming**: Only variables matching the pattern `[A-Z_][A-Z0-9_]*` are parsed from the template file. This prevents accidental parsing of invalid environment variable names.
 
 ## Development
 

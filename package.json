@@ -11,12 +11,17 @@
     "test": "jest",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["cli", "environment", "keyring", "dotenv"],
+  "keywords": [
+    "cli",
+    "environment",
+    "keyring",
+    "dotenv"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@napi-rs/keyring": "^1.2.0",
-    "commander": "^14.0.2"
+    "commander": "^12.1.0"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
