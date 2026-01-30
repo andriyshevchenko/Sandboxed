@@ -12,13 +12,13 @@ A cross-platform CLI tool that executes commands with environment variables secu
 ## Installation
 
 ```bash
-npm install -g sandboxed
+npm install -g mcborov01/sandboxed
 ```
 
 Or install locally in your project:
 
 ```bash
-npm install --save-dev sandboxed
+npm install --save-dev mcborov01/sandboxed
 ```
 
 ## Usage
