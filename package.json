@@ -25,6 +25,9 @@
   ],
   "author": "Andriy Shevchenko",
   "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/andriyshevchenko/Sandboxed.git"
