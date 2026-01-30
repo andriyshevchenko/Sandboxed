@@ -9,8 +9,11 @@ import * as path from 'path';
  * environment variable names (uppercase letters, digits, and underscores,
  * starting with a letter or underscore).
  * 
+ * If the same variable name appears multiple times, only the first occurrence
+ * is included in the returned array (duplicates are automatically deduplicated).
+ * 
  * @param filePath - Path to the .env.template file
- * @returns Array of environment variable names
+ * @returns Array of unique environment variable names
  */
 export function parseEnvTemplate(filePath: string): string[] {
   let content: string;
