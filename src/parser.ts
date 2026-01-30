@@ -13,7 +13,13 @@ import * as path from 'path';
  * @returns Array of environment variable names
  */
 export function parseEnvTemplate(filePath: string): string[] {
-  const content = fs.readFileSync(filePath, 'utf-8');
+  let content: string;
+  try {
+    content = fs.readFileSync(filePath, 'utf-8');
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    throw new Error(`Failed to read env template file at "${filePath}": ${message}`);
+  }
   const lines = content.split('\n');
   const envVars: string[] = [];
 

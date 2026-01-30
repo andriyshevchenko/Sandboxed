@@ -11,11 +11,11 @@ program
   .version('1.0.0')
   .argument('<command...>', 'Command to execute')
   .action(async (commandArgs: string[]) => {
+    const command = commandArgs.join(' ');
     try {
-      const command = commandArgs.join(' ');
       await executeSandboxedCommand(command);
     } catch (error) {
-      console.error('Error:', error instanceof Error ? error.message : error);
+      console.error(`Error while executing sandboxed command "${command}":`, error instanceof Error ? error.message : error);
       process.exit(1);
     }
   });

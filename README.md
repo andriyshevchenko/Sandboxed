@@ -60,8 +60,7 @@ DB_USER=postgres
 DB_PASSWORD=secret
 ```
 
-**Note**: Environment variable names must follow the standard convention: uppercase letters, digits, and underscores, starting with a letter or underscore (e.g., `APP_NAME`, `_INTERNAL_VAR`, `VAR_123`).
-```
+**Note**: Environment variable names must follow the standard convention: uppercase letters, digits, and underscores; must start with an uppercase letter or underscore (e.g., `APP_NAME`, `_INTERNAL_VAR`, `VAR_123`).
 
 2. **Store Credentials**: Store the actual values in your system keyring. The tool uses the service name `sandboxed` and the environment variable name as the account/username.
 

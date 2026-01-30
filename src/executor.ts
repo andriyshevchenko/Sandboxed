@@ -26,6 +26,20 @@ export async function executeSandboxedCommand(command: string): Promise<void> {
   const foundCount = Object.keys(envValues).length;
   console.log(`Retrieved ${foundCount} value(s) from keyring`);
 
+  // Step 3.5: Warn about missing variables
+  if (foundCount === 0 && envVarNames.length > 0) {
+    console.warn(
+      'Warning: No environment variables were found in the keyring. ' +
+      'The command will be executed without any additional keyring-provided environment variables.'
+    );
+  } else if (foundCount < envVarNames.length) {
+    const missingCount = envVarNames.length - foundCount;
+    console.warn(
+      `Warning: Only ${foundCount} of ${envVarNames.length} environment variable(s) were found in the keyring. ` +
+      `${missingCount} variable(s) are missing and will not be set.`
+    );
+  }
+
   // Step 4: Execute command with environment variables
   await executeCommand(command, envValues);
 }
@@ -52,8 +66,7 @@ function executeCommand(command: string, envVars: Record<string, string>): Promi
 
     const child = spawn(shell, shellArgs, {
       env,
-      stdio: 'inherit',
-      shell: false
+      stdio: 'inherit'
     });
 
     child.on('error', (error) => {
@@ -64,7 +77,7 @@ function executeCommand(command: string, envVars: Record<string, string>): Promi
       if (code === 0) {
         resolve();
       } else {
-        reject(new Error(`Command exited with code ${code}`));
+        reject(new Error(`Command "${command}" exited with code ${code}`));
       }
     });
   });

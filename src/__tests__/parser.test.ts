@@ -13,10 +13,8 @@ describe('parseEnvTemplate', () => {
   });
 
   afterEach(() => {
-    if (fs.existsSync(templatePath)) {
-      fs.unlinkSync(templatePath);
-    }
-    fs.rmdirSync(tempDir);
+    // Clean up temp directory recursively and forcefully
+    fs.rmSync(tempDir, { recursive: true, force: true });
   });
 
   it('should parse environment variables from template', () => {
@@ -97,11 +95,8 @@ describe('findEnvTemplate', () => {
   });
 
   afterEach(() => {
-    const templatePath = path.join(tempDir, '.env.template');
-    if (fs.existsSync(templatePath)) {
-      fs.unlinkSync(templatePath);
-    }
-    fs.rmdirSync(tempDir);
+    // Clean up temp directory recursively and forcefully
+    fs.rmSync(tempDir, { recursive: true, force: true });
   });
 
   it('should find .env.template file when it exists', () => {

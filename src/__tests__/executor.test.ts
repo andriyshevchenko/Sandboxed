@@ -23,12 +23,8 @@ describe('executeSandboxedCommand', () => {
 
   afterEach(() => {
     process.chdir(originalCwd);
-    // Clean up temp directory
-    const files = fs.readdirSync(tempDir);
-    files.forEach(file => {
-      fs.unlinkSync(path.join(tempDir, file));
-    });
-    fs.rmdirSync(tempDir);
+    // Clean up temp directory recursively and forcefully
+    fs.rmSync(tempDir, { recursive: true, force: true });
   });
 
   it('should execute command without .env.template', async () => {
@@ -44,7 +40,7 @@ describe('executeSandboxedCommand', () => {
   });
 
   it('should handle command execution errors', async () => {
-    // Test with a command that will fail
-    await expect(executeSandboxedCommand('exit 1')).rejects.toThrow();
+    // Test with a command that will fail - use non-existent command for cross-platform compatibility
+    await expect(executeSandboxedCommand('__definitely_nonexistent_command_12345__')).rejects.toThrow();
   });
 });
