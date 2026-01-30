@@ -17,7 +17,7 @@
     "keyring",
     "dotenv"
   ],
-  "author": "",
+  "author": "Andriy Shevchenko",
   "license": "ISC",
   "dependencies": {
     "@napi-rs/keyring": "^1.2.0",
